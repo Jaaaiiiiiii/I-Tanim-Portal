@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I-Tanim | Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="card" id="ui" style="display:none;">
+        <img id="user-pic" src="https://via.placeholder.com/110" class="pic" alt="Profile">
+        
+        <h2>Gardener <span id="user-name">...</span></h2>
+        
+        <div class="row">
+            <span>Volunteer ID:</span> 
+            <b id="v-id" style="color: var(--grad-bot);">...</b>
+        </div>
+        <div class="row">
+            <span>Status:</span> 
+            <b id="v-status" style="color: #ff9800;">...</b>
+        </div>
+        
+        <button class="logout" id="logout-btn">SIGN OUT</button>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        
+        const firebaseConfig = {
+            apiKey: "AIzaSyA_WAoRxS0XtSBHO4GKOUPeo9IxSuo9m8E",
+            authDomain: "i-tanim.firebaseapp.com",
+            projectId: "i-tanim",
+            storageBucket: "i-tanim.firebasestorage.app",
+            messagingSenderId: "543718035125",
+            appId: "1:543718035125:web:92261781c28eec00c738fc"
+        };
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                document.getElementById("ui").style.display = "block";
+                
+                // Fetch the user's data from Firestore
+                const snap = await getDoc(doc(db, "volunteers", user.uid));
+                if (snap.exists()) {
+                    const d = snap.data();
+                    document.getElementById("user-name").innerText = d.firstName || "";
+                    document.getElementById("v-id").innerText = d.volunteerID || "N/A";
+                    document.getElementById("v-status").innerText = d.status || "Pending";
+                    if(user.photoURL) document.getElementById("user-pic").src = user.photoURL;
+                } else if (user.displayName) {
+                    // Fallback if they logged in with Google but don't have a Firestore document yet
+                    document.getElementById("user-name").innerText = user.displayName;
+                    document.getElementById("v-id").innerText = "ITNM-" + user.uid.substring(0,5).toUpperCase();
+                    document.getElementById("v-status").innerText = "Google User";
+                    if(user.photoURL) document.getElementById("user-pic").src = user.photoURL;
+                }
+            } else { 
+                window.location.href = "index.html"; 
+            }
+        });
+
+        document.getElementById("logout-btn").onclick = () => signOut(auth);
+    </script>
+</body>
+</html>

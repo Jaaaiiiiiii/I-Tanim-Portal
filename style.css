@@ -1,0 +1,188 @@
+/* GLOBAL THEME VARIABLES - GRADIENT 3 OFFICIAL */
+:root {
+    --grad-top: #E3EF26; /* The Lime Pop */
+    --grad-mid: #076653; /* The Transition Forest */
+    --grad-bot: #0C342C; /* The Deep Base */
+    --white: #ffffff;
+    --text-dark: #1a1a1a;
+    --error: #ff4d4d;
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    /* THE PREMIUM GRADIENT BACKGROUND */
+    background: linear-gradient(135deg, var(--grad-top) 0%, var(--grad-mid) 50%, var(--grad-bot) 100%);
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* THE UNIFIED CARD */
+.card {
+    background: var(--white);
+    padding: 45px;
+    border-radius: 35px;
+    box-shadow: 0 25px 50px rgba(12, 52, 44, 0.4); /* Deep green shadow */
+    width: 100%;
+    max-width: 350px;
+    text-align: center;
+    color: var(--text-dark);
+}
+
+.welcome {
+    font-size: 0.85rem;
+    color: var(--grad-mid);
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.brand {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--grad-bot);
+    margin: 0 0 30px 0;
+    letter-spacing: -1px;
+}
+
+h1, h2 {
+    color: var(--grad-bot);
+    font-weight: 900;
+}
+
+/* INPUT FIELDS */
+input {
+    width: 100%;
+    padding: 15px;
+    margin: 8px 0;
+    border: 2px solid #eee;
+    border-radius: 12px;
+    background: #f9f9f9;
+    color: var(--text-dark);
+    box-sizing: border-box;
+    font-size: 0.95rem;
+    outline: none;
+    transition: 0.3s;
+}
+
+input:focus {
+    background: var(--white);
+    border-color: var(--grad-mid);
+}
+
+/* OPTIONS & LABELS */
+.options, label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0 20px 5px;
+    font-size: 0.85rem;
+    color: #555;
+    cursor: pointer;
+    text-align: left;
+    font-weight: 600;
+}
+
+.options input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    accent-color: var(--grad-mid);
+}
+
+/* BUTTONS */
+.btn-login, .btn-reg, .logout {
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 50px;
+    background: var(--grad-bot);
+    color: var(--grad-top); /* Lime text on dark green button */
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+.btn-login:hover, .btn-reg:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(12, 52, 44, 0.3);
+    background: var(--grad-mid);
+    color: var(--white);
+}
+
+.btn-google {
+    width: 100%;
+    padding: 14px;
+    border-radius: 50px;
+    background: var(--white);
+    color: #333;
+    border: 2px solid var(--grad-mid);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-google:hover {
+    background: #fafafa;
+    border-color: var(--grad-bot);
+}
+
+/* DIVIDERS & FOOTERS */
+.divider {
+    display: flex;
+    align-items: center;
+    margin: 25px 0;
+    font-size: 0.7rem;
+    color: #aaa;
+    font-weight: bold;
+}
+
+.divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #eee;
+}
+
+.divider::before { margin-right: 15px; }
+.divider::after { margin-left: 15px; }
+
+.footer, .back {
+    margin-top: 25px;
+    font-size: 0.85rem;
+    color: #777;
+}
+
+.footer a, .back a {
+    color: var(--grad-mid);
+    font-weight: bold;
+    text-decoration: none;
+    border-bottom: 2px solid var(--grad-top);
+}
+
+/* DASHBOARD SPECIFICS */
+.pic {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    border: 4px solid var(--grad-top);
+    background: var(--white);
+    margin-bottom: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 0.95rem;
+    color: #444;
+}
